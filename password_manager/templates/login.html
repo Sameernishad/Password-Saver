@@ -1,3 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Password Manager</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- your content -->
+
 <h2>Login</h2>
 <form method="post">{% csrf_token %}
   <input name="username" placeholder="Username"><br>
@@ -5,3 +15,4 @@
   <button type="submit">Login</button>
 </form>
 <a href="/register/">Register</a>
+</body>

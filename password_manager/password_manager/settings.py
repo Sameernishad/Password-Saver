@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# settings.py
+
+STATIC_URL = '/static/'
+
 
 # Application definition
 

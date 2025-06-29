@@ -1,5 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Password Manager</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- your content -->
+
 <h2>Dashboard</h2>
 <p>Welcome, {{ request.user.username }}</p>
 <a href="/enter/">Enter New Password</a><br>
 <a href="/access/">View Saved Passwords</a><br>
 <a href="/logout/">Logout</a>
+</body>
