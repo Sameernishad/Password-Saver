@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Password Manager{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    
+    <div class="container mx-auto p-4">
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="p-4 mb-2 text-white {% if message.tags == 'success' %}bg-green-500{% else %}bg-red-500{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <nav class="mb-4">
+                <a href="{% url 'dashboard' %}" class="text-blue-500">Dashboard</a> |
+                <a href="{% url 'create_password_entry' %}" class="text-blue-500">Add Password</a> |
+                <a href="{% url 'logout' %}" class="text-blue-500">Logout</a>
+            </nav>
+        {% else %}
+            <nav class="mb-4" style="background-color: #b1b0b0b0; padding: 20px; border-radius: 20px;">
+                <a href="{% url 'home' %}" class="text-blue-500">Home</a> |
+                <a href="{% url 'login' %}" class="text-blue-500">Login</a> |
+                <a href="{% url 'register' %}" class="text-blue-500">Register</a>
+            </nav>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
