@@ -1,0 +1,35 @@
+<xaiArtifact artifact_id="a24a3490-9734-4aca-8c15-bb0d204ec011" artifact_version_id="730ff039-e0b9-42cd-826c-d2b208a990de" title="dashboard.html" contentType="text/html">
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Password Manager{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl mb-4">Your Password Entries</h1>
+{% if entries %}
+    <table class="w-full border-collapse border">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border p-2">Title</th>
+                <th class="border p-2">Username</th>
+                <th class="border p-2">Password</th>
+                <th class="border p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td class="border p-2">{{ entry.title }}</td>
+                    <td class="border p-2">{{ entry.username }}</td>
+                    <td class="border p-2">{{ entry.password }}</td>
+                    <td class="border p-2">
+                        <a href="{% url 'update_password_entry' entry.pk %}" class="text-blue-500">Edit</a> |
+                        <a href="{% url 'delete_password_entry' entry.pk %}" class="text-red-500">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No password entries found. <a href="{% url 'create_password_entry' %}" class="text-blue-500">Add one now</a>.</p>
+{% endif %}
+{% endblock %}
